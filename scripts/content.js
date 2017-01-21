@@ -56,7 +56,10 @@ function autoCopy(){
         onSelectEnd();
 
         document.addEventListener('selectend',function(){
-            document.execCommand('copy');  
+            var textblock = document.getElementById('extension_textblock');
+            textblock.textContent = window.getSelection();
+            var event = new Event("change");
+            textblock.dispatchEvent(event);
             alertify.success("Copied");
         });
 
@@ -74,7 +77,26 @@ function autoCopy(){
 };
 
 function removeCopyLock(){
-    
+    if (document.getElementById('extension_textblock')){
+        return;
+    }
+
+    var sendEvent = function(){
+        chrome.runtime.sendMessage({
+            data : document.getElementById('extension_textblock').textContent,
+            type : 'copy'
+        });
+    }
+
+    var textblock = document.createElement('textarea');
+    textblock.id = "extension_textblock";
+    textblock.style.position = 'absolute';
+    textblock.style.left = '-99999px';
+    document.body.appendChild(textblock);
+    textblock.addEventListener('change',sendEvent);
+
+    document.oncopy = () => false;
+ 
 };
 
 chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
@@ -83,7 +105,6 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
     switch (data) {
         case 'rLBclick' :
             removeLock(); 
-            autoCopy();
             break;
         case 'cBclick':
             removeCopyLock();

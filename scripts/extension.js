@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     removeLockBtn.addEventListener('click', function () {
         sendEvent('rLBclick');
     });
-   copyBtn.addEventListener('click', function(){
+    copyBtn.addEventListener('click', function(){
         sendEvent('cBclick');
     });
 });
