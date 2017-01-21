@@ -74,33 +74,7 @@ function autoCopy(){
 };
 
 function removeCopyLock(){
-    if (document.getElementById('copyFix')){
-        return;
-    }
-    var inPageScript = '(' + function(){
-        var removeFromDoc = function(){
-            var isDone = false;
-            var eventListeners = getEventListeners(document).copy;
-            if (eventListeners !== undefined && eventListeners.length > 0){
-                eventListeners.forEach(el=>el.remove());
-                isDone = true;
-            };
-            return isDone;
-        }
-        if (! removeFromDoc() ){
-            var els = document.body.getElementsByTagName('*');
-            for (var i = 0; i < els.length; i ++){
-                var eventListeners = getEventListeners(els[i]).copy;
-                if (eventListeners !== undefined && eventListeners.length > 0){
-                    eventListeners.forEach(el=>el.remove());
-                };
-            };
-        };
-    } + ')()';
-    var inPageScriptNode = document.createElement('script');
-    inPageScriptNode.id = 'copyFix';
-    inPageScriptNode.textContent = inPageScript;
-    document.body.appendChild(inPageScriptNode);
+    
 };
 
 chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
