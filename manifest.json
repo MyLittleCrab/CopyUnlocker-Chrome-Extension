@@ -19,12 +19,6 @@
     ],
     "background" : {
         "page": "background.html"
-    },
-    "web_accessible_resources" : [
-        "scripts/jquery-3.1.1.min.js",
-        "scripts/contextMenu.min.js",
-        "scripts/alertify.js",
-        "css/contextMenu.min.css"
-    ]
+    }
 }
 
