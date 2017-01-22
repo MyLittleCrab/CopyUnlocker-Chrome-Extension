@@ -1,5 +1,4 @@
 var removeLockBtn = document.getElementById('removeLock');
-var copyBtn = document.getElementById('copyLock');
 var statusBar = document.getElementById('status');
 
 function sendEvent(message){
@@ -14,9 +13,6 @@ function sendEvent(message){
 document.addEventListener('DOMContentLoaded', function() {
     removeLockBtn.addEventListener('click', function () {
         sendEvent('rLBclick');
-    });
-    copyBtn.addEventListener('click', function(){
-        sendEvent('cBclick');
     });
 });
 

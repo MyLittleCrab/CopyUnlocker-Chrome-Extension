@@ -53,17 +53,9 @@ function autoCopy(){
         document.addEventListener('selectend',function(){
             var textblock = document.getElementById('extension_textblock');
             textblock.textContent = window.getSelection();
-            var event = new Event("change");
-            textblock.dispatchEvent(event);
-            alertify.success("Copied");
         });
 
     }+')()';
-
-    var cuteAlerts = document.createElement('script');
-    cuteAlerts.id = 'cuteAlerts';
-    cuteAlerts.src = 'https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js';
-    document.head.appendChild(cuteAlerts);
 
     var inPageScriptNode = document.createElement('script');
     inPageScriptNode.id = 'autoCopy';
@@ -71,7 +63,7 @@ function autoCopy(){
     document.body.appendChild(inPageScriptNode);
 };
 
-function removeCopyLock(){
+function customCopy(){
     if (document.getElementById('extension_textblock')){
         return;
     }
@@ -91,7 +83,57 @@ function removeCopyLock(){
     textblock.addEventListener('change',sendEvent);
 
     document.oncopy = () => false;
- 
+    var jQuery = chrome.extension.getURL('scripts/jquery-3.1.1.min.js');
+    var inPageScript = `(function (){
+        if (typeof jQuery == 'undefined' || jQuery().jquery[0] == '1'){
+            var jQueryNode = document.createElement('script');
+            jQueryNode.id = 'jQuery';
+            jQueryNode.src = '${jQuery}';
+            document.head.appendChild(jQueryNode);
+        }
+
+        var menu = [{
+            name: 'Copy',
+            title: 'Copy selected text',
+            fun: function () {
+                var textblock = document.getElementById('extension_textblock');
+                var event = new Event("change");
+                textblock.dispatchEvent(event);
+                alertify.success("Copied");
+            }
+        }, {
+            name: 'Remove custom menu',
+            title: 'Remove custom context menu',
+            fun: function () {
+                $(document.body).contextMenu('destroy');
+            }
+        }];
+
+        setTimeout(function(){$(document.body).contextMenu(menu,{triggerOn:'contextmenu'})},300);;
+
+    })()`;
+
+    var inPageScriptNode = document.createElement('script');
+    inPageScriptNode.id = 'customCopy';
+    inPageScriptNode.textContent = inPageScript;
+    document.body.appendChild(inPageScriptNode);
+
+    var cuteAlerts = document.createElement('script');
+    cuteAlerts.id = 'cuteAlerts';
+    cuteAlerts.src = chrome.extension.getURL('scripts/alertify.js');
+    document.head.appendChild(cuteAlerts);
+
+    var contextMenu = document.createElement('script');
+    contextMenu.id = 'contextMenu';
+    contextMenu.src = chrome.extension.getURL('scripts/contextMenu.min.js');
+    document.head.appendChild(contextMenu);    
+    
+    var contextMenuCss = document.createElement('link');
+    contextMenuCss.rel = 'stylesheet';
+    contextMenuCss.type = 'text/css';
+    contextMenuCss.href = chrome.extension.getURL('css/contextMenu.min.css');
+    document.head.appendChild(contextMenuCss); 
+
 };
 
 chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
@@ -100,9 +142,7 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
     switch (data) {
         case 'rLBclick' :
             removeLock(); 
-            break;
-        case 'cBclick':
-            removeCopyLock();
+            customCopy();
             autoCopy();
             break;
     }
