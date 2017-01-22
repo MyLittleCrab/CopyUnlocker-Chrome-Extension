@@ -6,7 +6,13 @@
 - [x] cute custom context menu ^^"
 - [ ] cute popup menu >.<
 
-## How to install
+## How to Install
+
+1. [Download & extract zip](https://github.com/JustAddAcid/UsrSelecterExtensionChrome/archive/master.zip)
+2. Menu btn -> extensions -> manage extensions
+3. Drag&drop extension file to browser from "install" folder (Opera.nex or Chrome.crx)
+
+## Install from sources
 
 1. [Download & extract zip](https://github.com/JustAddAcid/UsrSelecterExtensionChrome/archive/master.zip)
 2. Menu btn -> extensions -> manage extensions
