@@ -2,6 +2,8 @@
 
 function removeLock(){
     document.onselectstart = null;
+    document.oncontextmenu = null;
+    document.onmousedown = null;
 
     var setStyleToBody = function(){
             if (getComputedStyle(document.body).userSelect == 'none'){
@@ -14,6 +16,7 @@ function removeLock(){
     if (! setStyleToBody()){
         for (let i of document.body.getElementsByTagName('*')){
             i.style.userSelect='text';
+            i.oncontextmenu = null;
         }
     };
 }
