@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "UserSelecter",
     "description": "Extension for removing selection lock on websites",
-    "version": "1.0",
+    "version": "1.5",
     "browser_action": {
         "default_icon": "favicon.png",
         "default_popup": "popup.html",
@@ -10,8 +10,13 @@
     },
     "content_scripts": [{
         "matches": ["<all_urls>"],
+        "css": [
+            "css/styles.css"
+        ],
         "js":      [
-            "scripts/content.js"
+            "scripts/inPageScripts/content.js",
+            "scripts/inPageScripts/selectEndEvent.js",
+            "scripts/inPageScripts/cursorPositionGetter.js"
         ]
     }],
     "permissions": [
@@ -21,4 +26,3 @@
         "page": "background.html"
     }
 }
-

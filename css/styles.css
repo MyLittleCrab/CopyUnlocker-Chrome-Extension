@@ -1,0 +1,19 @@
+.popup{
+    box-sizing: border-box;
+    display: none;
+    position: absolute;
+    color: white;
+    padding: 8px;
+    border: 1px solid black;
+    background-color: #313131;
+    text-align: center;
+    width: 70px;
+    cursor: pointer;
+    transition: background-color .3s ease-in-out;
+    font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+    opacity: 0.9;
+}
+
+.popup:hover {
+    background-color: #000;
+}

@@ -8,7 +8,7 @@
 
 1. [Download & extract zip](https://github.com/JustAddAcid/UsrSelecterExtensionChrome/archive/master.zip)
 2. Menu btn -> extensions -> manage extensions
-3. Drag&drop extension file to browser from "install" folder (Opera.nex or Chrome.crx)
+3. Drag&drop extension file to browser from "install" folder (install/Remove-Copy-Lock-Chrome-Extension.crx)
 
 ## Install from sources
 
@@ -37,7 +37,7 @@
 
 1. [Скачать и распаковать архив](https://github.com/JustAddAcid/UsrSelecterExtensionChrome/archive/master.zip)
 2. Меню -> Расширения -> Управление расширениями
-3. Перетаскивание файла расширения в окно браузера и подтверждение установки (Opera.nex или Chrome.crx)
+3. Перетаскивание файла расширения в окно браузера и подтверждение установки (install/Remove-Copy-Lock-Chrome-Extension.crx)
 
 ## Установка из исходников:
 
