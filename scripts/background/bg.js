@@ -1,17 +1,17 @@
 // Принимает сообщение с текстом, и помещает его в буфер
-chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
-    var data = request.data || {};
-    if (request.type == 'copy'){
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    const data = request.data || {};
+    if (request.type === 'copy') {
         newdiv = document.createElement('div');
         newdiv.style.position = 'absolute';
         newdiv.style.left = '-99999px';
         document.body.appendChild(newdiv);
-        newdiv.innerHTML = data;   
+        newdiv.innerHTML = data;
         window.getSelection().selectAllChildren(newdiv);
-        document.execCommand('copy');  
-        window.setTimeout(function () {
+        document.execCommand('copy');
+        window.setTimeout(() => {
             document.body.removeChild(newdiv);
         }, 100);
     };
-    sendResponse({data: data, success: true});
+    sendResponse({ data, success: true });
 });

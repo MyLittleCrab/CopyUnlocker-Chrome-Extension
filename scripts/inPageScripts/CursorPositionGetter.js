@@ -1,3 +1,5 @@
+'use strict'
+
 class CursorPositionGetter{
     constructor(){
         this.x = 0;
