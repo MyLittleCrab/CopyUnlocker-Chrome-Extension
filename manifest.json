@@ -13,11 +13,13 @@
         "css": [
             "css/styles.css"
         ],
-        "js":      [
-            "scripts/inPageScripts/main.js",
+        "js": [
+            "scripts/inPageScripts/config.js",
+            "scripts/inPageScripts/utils.js",
             "scripts/inPageScripts/selectEndEvent.js",
             "scripts/inPageScripts/CursorPositionGetter.js",
-            "scripts/inPageScripts/CopyUnlocker.js"
+            "scripts/inPageScripts/CopyUnlocker.js",
+            "scripts/inPageScripts/main.js"
         ]
     }],
     "permissions": [
